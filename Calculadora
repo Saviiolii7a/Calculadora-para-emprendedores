@@ -1,1 +1,131 @@
 
+DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora Emprendedora By Vani</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #fff;
+      color: #333;
+      padding: 20px;
+    }
+    h1 {
+      color: #e91e63;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #f48fb1;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f8bbd0;
+      color: #880e4f;
+    }
+    td {
+      background-color: #fce4ec;
+    }
+    input[type="number"] {
+      width: 100px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      text-align: right;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #e91e63;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #resultado {
+      font-weight: bold;
+      color: #e91e63;
+      margin-top: 20px;
+      font-size: 18px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Calculadora Emprendedora By Vani</h1>
+
+  <table>
+    <tr>
+      <th>Gasto</th>
+      <th>Monto (en $)</th>
+    </tr>
+    <tr>
+      <td>Alquiler</td>
+      <td><input type="number" id="alquiler" value="0"></td>
+    </tr>
+    <tr>
+      <td>Luz</td>
+      <td><input type="number" id="luz" value="0"></td>
+    </tr>
+    <tr>
+      <td>Internet</td>
+      <td><input type="number" id="internet" value="0"></td>
+    </tr>
+    <tr>
+      <td>Materiales</td>
+      <td><input type="number" id="materiales" value="0"></td>
+    </tr>
+    <tr>
+      <td>Packaging</td>
+      <td><input type="number" id="packaging" value="0"></td>
+    </tr>
+    <tr>
+      <td>Horas de trabajo</td>
+      <td><input type="number" id="horas" value="0"></td>
+    </tr>
+    <tr>
+      <td>Valor por hora</td>
+      <td><input type="number" id="valorHora" value="0"></td>
+    </tr>
+    <tr>
+      <td>Porcentaje de ganancia (%)</td>
+      <td><input type="number" id="ganancia" value="0"></td>
+    </tr>
+  </table>
+
+  <button onclick="calcular()">Calcular Precio Sugerido</button>
+
+  <div id="resultado"></div>
+
+  <script>
+    function calcular() {
+      const alquiler = parseFloat(document.getElementById('alquiler').value) || 0;
+      const luz = parseFloat(document.getElementById('luz').value) || 0;
+      const internet = parseFloat(document.getElementById('internet').value) || 0;
+      const materiales = parseFloat(document.getElementById('materiales').value) || 0;
+      const packaging = parseFloat(document.getElementById('packaging').value) || 0;
+      const horas = parseFloat(document.getElementById('horas').value) || 0;
+      const valorHora = parseFloat(document.getElementById('valorHora').value) || 0;
+      const ganancia = parseFloat(document.getElementById('ganancia').value) || 0;
+
+      const costoFijo = alquiler + luz + internet;
+      const costoVariable = materiales + packaging;
+      const costoTiempo = horas * valorHora;
+      const costoTotal = costoFijo + costoVariable + costoTiempo;
+      const totalConGanancia = costoTotal + (costoTotal * ganancia / 100);
+
+      document.getElementById('resultado').innerHTML =
+        "Tu costo total es: $" + costoTotal.toFixed(2) + "<br>" +
+        "Precio sugerido con ganancia (" + ganancia + "%): <br><strong>$" + totalConGanancia.toFixed(2) + "</strong>";
+    }
+  </script>
+
+</body>
+</html>
